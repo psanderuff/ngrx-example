@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ITodoModel } from 'src/app/models/todo.model';
-import { TodoEffectService } from 'src/app/services/todo.effect.service';
-import { IAppState, loadTodos, setTodos } from 'src/app/store/app.state';
+import { loadTodos } from './state/todo.actions';
+import { ITodoState } from './state/todo.state';
+
 
 @Component({
   selector: 'app-todo',
@@ -14,18 +15,16 @@ export class TodoComponent implements OnInit {
 
   
   constructor(
-    private todoService: TodoEffectService,
-    private store: Store<{app: IAppState}>  
+    private store: Store<{todoState: ITodoState}>  
     ){}
   
 
-  todos$ = this.store.select('app').pipe(
-    map(app => app.todos)
+  todos$ = this.store.select('todoState').pipe(
+    map(state => state.todos)
   )
-  ngOnInit(): void {
-
-   this.store.dispatch(loadTodos())
   
+  ngOnInit(): void {
+    this.store.dispatch(loadTodos())
   }
 
 }

@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ITodoModel } from './models/todo.model';
-import { TodoEffectService } from './services/todo.effect.service';
+import { TodoEffectService } from './components/todo/state/todo.effects';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-
-  todos: ITodoModel[] = [];
 
   constructor(){}
 
