@@ -1,8 +1,8 @@
-import { createReducer, on } from "@ngrx/store";
+import { Action, createReducer, on } from "@ngrx/store";
 import { setTodos } from "./todo.actions";
-import { totoInitialState } from "./todo.state";
+import { ITodoState, totoInitialState } from "./todo.state";
 
-export const todoReducer = createReducer(
+const _todoReducer = createReducer(
     totoInitialState,
     on(setTodos, (state, { todos }) => {
         state = {
@@ -12,3 +12,7 @@ export const todoReducer = createReducer(
         return state;
     })
 )
+
+export function todoReducer(state: ITodoState | undefined, action: Action) {
+    return _todoReducer(state, action);
+}

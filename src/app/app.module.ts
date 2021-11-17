@@ -12,6 +12,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { EffectsModule } from '@ngrx/effects';
 import { todoReducer } from './components/todo/state/todo.reducers';
 import { TodoEffectService } from './components/todo/state/todo.effects';
+import { appReducer } from './store/app.state';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { TodoEffectService } from './components/todo/state/todo.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({todoState: todoReducer}),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([TodoEffectService])
   ],
